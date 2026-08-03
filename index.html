@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ahmed Ali Morsi — Video Editor Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#0a0a0c;--white:#f4f2ed;--gold:#c9a84c;--gold-light:#e2c97e;--muted:#7a7672;--surface:#111114;--surface2:#18181d;--border:rgba(201,168,76,0.15)}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;padding:28px 48px;display:flex;justify-content:space-between;align-items:center;z-index:50;background:linear-gradient(to bottom,rgba(10,10,12,0.95),transparent)}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;letter-spacing:0.08em;color:var(--white);text-transform:uppercase}
+.nav-logo span{color:var(--gold)}
+.nav-tag{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:6px 14px;border-radius:100px}
+.nav-progress{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:16px}
+.np-link{font-family:'Syne',sans-serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s}
+.np-link.active{color:var(--gold)}
+.np-track{position:relative;width:80px;height:1px;background:var(--border);overflow:hidden}
+.np-fill{position:absolute;left:0;top:0;height:100%;width:0%;background:var(--gold)}
+.np-code{font-family:'Syne',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.05em;color:var(--gold);min-width:30px;text-align:right}
+.partners{padding:60px 48px 20px}
+.partners-head{display:flex;align-items:center;gap:24px;margin-bottom:40px}
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.pcard{background:var(--surface2);padding:32px 22px;display:flex;flex-direction:column;gap:10px}
+.pcard:nth-child(1){border-radius:4px 0 0 4px}
+.pcard:nth-child(4){border-radius:0 4px 4px 0}
+.pc-role{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold)}
+.pc-name{font-family:'Syne',sans-serif;font-weight:800;font-size:16px;color:var(--white);letter-spacing:-0.01em;line-height:1.3}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 48px 80px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 70% 40%,rgba(201,168,76,0.06),transparent 70%)}
+.hero-line{position:absolute;top:0;left:48px;width:1px;height:100%;background:linear-gradient(to bottom,transparent,var(--border) 30%,var(--border) 70%,transparent)}
+.hn{font-family:'Syne',sans-serif;font-size:11px;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-bottom:32px;position:relative;z-index:1;animation:fu 1s .2s both}
+.ht{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(52px,9vw,120px);line-height:0.9;letter-spacing:-0.02em;color:var(--white);max-width:900px;position:relative;z-index:1;animation:fu 1s .4s both}
+.ht em{font-style:normal;color:var(--gold)}
+.ht .ol{-webkit-text-stroke:1px rgba(244,242,237,0.3);color:transparent}
+.hs{margin-top:40px;max-width:460px;font-size:15px;color:rgba(244,242,237,0.55);line-height:1.8;position:relative;z-index:1;animation:fu 1s .6s both}
+.hsc{position:absolute;bottom:40px;right:48px;display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+.hsl{width:40px;height:1px;background:var(--gold);animation:sl 2s ease-in-out infinite alternate}
+@keyframes sl{from{width:20px}to{width:50px}}
+@keyframes fu{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.divider{padding:0 48px;margin:0 0 80px;display:flex;align-items:center;gap:24px}
+.dl{font-size:10px;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold)}
+.dline{flex:1;height:1px;background:var(--border)}
+.dc{font-family:'Syne',sans-serif;font-size:11px;color:var(--muted)}
+.projects{padding:0 48px 120px}
+.card{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:70px 0;border-top:1px solid var(--border);opacity:0;transform:translateY(50px);transition:opacity .8s cubic-bezier(.23,1,.32,1),transform .8s cubic-bezier(.23,1,.32,1)}
+.card.vis{opacity:1;transform:translateY(0)}
+.card:nth-child(even){direction:rtl}
+.card:nth-child(even)>*{direction:ltr}
+.card:last-child{border-bottom:1px solid var(--border)}
+.vw{position:relative;border-radius:4px;overflow:hidden;aspect-ratio:16/9;background:var(--surface);cursor:pointer}
+.vw::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,0.08),transparent 50%);pointer-events:none}
+.vw video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.23,1,.32,1)}
+.vw:hover video{transform:scale(1.03)}
+.pb{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:2;transition:opacity .3s}
+.pi{width:64px;height:64px;border-radius:50%;background:rgba(10,10,12,0.7);border:1px solid rgba(201,168,76,0.4);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);transition:background .3s,border-color .3s,transform .3s}
+.vw:hover .pi{background:rgba(201,168,76,0.2);border-color:var(--gold);transform:scale(1.1)}
+.pi svg{margin-left:4px}
+.pb.h{opacity:0;pointer-events:none}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid var(--border);border-radius:100px;background:rgba(201,168,76,0.05);margin-bottom:20px}
+.bdot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.bname{font-family:'Syne',sans-serif;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold)}
+.pidx{font-family:'Syne',sans-serif;font-size:11px;letter-spacing:0.3em;color:var(--muted);text-transform:uppercase;margin-bottom:16px}
+.ptitle{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(28px,3.5vw,48px);line-height:1.05;letter-spacing:-0.02em;color:var(--white);margin-bottom:24px}
+.ptitle span{display:block}
+.pdesc{font-size:14px;line-height:1.85;color:rgba(244,242,237,0.55);margin-bottom:32px;max-width:420px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
+.tag{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);border:1px solid rgba(255,255,255,0.08);padding:5px 12px;border-radius:100px}
+.ach{display:flex;align-items:flex-start;gap:14px;padding:18px 20px;background:var(--surface2);border-left:2px solid var(--gold);border-radius:0 4px 4px 0}
+.ai{width:32px;height:32px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(201,168,76,0.1);border-radius:6px;font-size:14px}
+.at{font-size:12.5px;line-height:1.65;color:rgba(244,242,237,0.65)}
+.at strong{color:var(--gold-light);font-weight:400}
+.about{padding:100px 48px;position:relative;border-top:1px solid var(--border)}
+.about-bg{position:absolute;inset:0;background:radial-gradient(ellipse 50% 80% at 90% 50%,rgba(201,168,76,0.04),transparent 70%);pointer-events:none}
+.ame{display:grid;grid-template-columns:300px 1fr;gap:80px;align-items:start;margin-bottom:80px;position:relative;z-index:1}
+.pw{position:relative}
+.pw img{width:100%;border-radius:4px;display:block}
+.pborder{position:absolute;inset:12px -12px -12px 12px;border:1px solid var(--border);border-radius:4px;z-index:-1}
+.mrow{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 28px}
+.mtag{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);border:1px solid var(--border);padding:5px 12px;border-radius:100px;background:rgba(201,168,76,0.05)}
+.ab{font-size:15px;line-height:1.9;color:rgba(244,242,237,0.55);margin-bottom:20px}
+.ab strong{color:var(--white);font-weight:400}
+.ab em{color:var(--gold-light);font-style:italic}
+.cr{margin-top:28px;padding-top:24px;border-top:1px solid var(--border)}
+.cl{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:12px}
+.clist{display:flex;flex-wrap:wrap;gap:8px}
+.ct{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--white);border:1px solid rgba(255,255,255,0.1);padding:5px 12px;border-radius:4px;background:var(--surface2)}
+.adiv{width:100%;height:1px;background:var(--border);margin-bottom:80px;position:relative;z-index:1}
+.agrid{display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start;position:relative;z-index:1}
+.alabel{font-size:11px;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-bottom:12px}
+.ah{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(32px,4vw,56px);line-height:1;letter-spacing:-0.02em;color:var(--white)}
+.ah .ol{-webkit-text-stroke:1px rgba(244,242,237,0.25);color:transparent;display:block}
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:40px}
+.si{padding:28px;background:var(--surface2)}
+.si:nth-child(1){border-radius:4px 0 0 0}.si:nth-child(2){border-radius:0 4px 0 0}
+.si:nth-child(3){border-radius:0 0 0 4px}.si:nth-child(4){border-radius:0 0 4px 0}
+.sn{font-family:'Syne',sans-serif;font-weight:800;font-size:40px;color:var(--white);letter-spacing:-0.03em;line-height:1;margin-bottom:8px}
+.sn em{font-style:normal;color:var(--gold)}
+.sl2{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+footer{padding:32px 48px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.fl{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;letter-spacing:0.08em;color:var(--muted);text-transform:uppercase}
+.fl span{color:var(--gold)}
+.fc{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.fn{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--white)}
+.fe{font-size:12px;color:var(--gold);text-decoration:none}
+@media(max-width:900px){
+  nav{padding:20px 24px}.hero,.about{padding-left:24px;padding-right:24px}
+  .hero-line{left:24px}.hsc{right:24px}
+  .divider,.projects,.partners{padding-left:24px;padding-right:24px}
+  .card{grid-template-columns:1fr;direction:ltr!important;gap:32px}
+  .ame{grid-template-columns:1fr;gap:40px}.pw{max-width:260px}
+  .agrid{grid-template-columns:1fr;gap:40px}
+  .nav-progress{display:none}
+  .pgrid{grid-template-columns:1fr 1fr}
+  footer{flex-direction:column;gap:12px;padding:24px}.fc{align-items:center}
+}
+</style>
+</head>
+<body>
+<nav><div class="nav-logo">A<span>.</span>MORSI</div>
+<div class="nav-progress">
+  <a class="np-link active" href="#about" data-sec="about">About</a>
+  <a class="np-link" href="#partners" data-sec="partners">Partners</a>
+  <a class="np-link" href="#work" data-sec="work">Work</a>
+  <div class="np-track"><div class="np-fill" id="npFill"></div></div>
+  <span class="np-code" id="npCode">000</span>
+</div>
+<div class="nav-tag">Video Editor</div></nav>
+<section class="hero">
+  <div class="hero-bg"></div><div class="hero-line"></div>
+  <div class="hn">Selected Work — 2025/2026</div>
+  <h1 class="ht">Generating<br><em>the future</em><br><span class="ol">of motion.</span></h1>
+  <p class="hs">Video editor &amp; motion storyteller for global brands — crafting cinematic content across automotive, destination and commercial work, from AI-driven productions to full post-production craft.</p>
+  <div class="hsc"><div class="hsl"></div>Scroll to explore</div>
+</section>
+<section class="about" id="about">
+  <div class="about-bg"></div>
+  <div class="ame">
+    <div class="pw"><img src="assets/about.jpg" alt="Ahmed Ali Morsi"/><div class="pborder"></div></div>
+    <div>
+      <div class="alabel">About Me</div>
+      <h2 class="ah">Ahmed Ali<br><span class="ol">Morsi.</span></h2>
+      <div class="mrow"><span class="mtag">4+ Years Experience</span><span class="mtag">Video Editor</span><span class="mtag">Cairo, Egypt</span></div>
+      <p class="ab">I'm a <strong>video editor and motion storyteller</strong> with <strong>4+ years of experience</strong> crafting cinematic content for brands across automotive, commercial, and destination verticals. My path started at <strong>Pioneers Now</strong>, continued at <strong>IEA</strong> — where I first began working with AI-driven production — and has grown over the past two years at <strong>SKOON</strong>.</p>
+      <p class="ab">Working mainly in <strong>Adobe Premiere Pro</strong> and <strong>After Effects</strong>, I take raw and AI-generated footage alike and shape it into polished, broadcast-ready films — pacing, color, sound design, and final delivery.</p>
+      <p class="ab">I've collaborated closely with <strong>Director Hossam El-Gohary</strong> on productions including <em>Sylvia</em> and the Jeep® campaign, alongside AI-driven work for DFSK, AlUla, and other regional and global brands.</p>
+      <div class="cr"><span class="cl">Worked with</span>
+        <div class="clist"><span class="ct">Pioneers Now</span><span class="ct">IEA</span><span class="ct">SKOON</span><span class="ct">Jeep®</span><span class="ct">DFSK</span><span class="ct">Dir. Hossam El-Gohary</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="adiv"></div>
+  <div class="agrid">
+    <div><div class="alabel">Capabilities</div><h2 class="ah">Ahead<br>of the<br><span class="ol">curve.</span></h2></div>
+    <div>
+      <p class="ab">I specialize in <strong>video editing and motion storytelling</strong> for brands that refuse to be ordinary — at the intersection of pacing, sound, color, and cinematic craft.</p>
+      <p class="ab">Across automotive, destination, and commercial verticals, I've consistently delivered <strong>polished, broadcast-ready edits</strong> — including some of the market's first fully AI-driven productions.</p>
+      <div class="sgrid">
+        <div class="si"><div class="sn">4<em>+</em></div><div class="sl2">Years Experience</div></div>
+        <div class="si"><div class="sn">5<em>+</em></div><div class="sl2">Projects</div></div>
+        <div class="si"><div class="sn">3</div><div class="sl2">Studios</div></div>
+        <div class="si"><div class="sn">1<em>st</em></div><div class="sl2">In the Market</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="partners" id="partners">
+  <div class="partners-head"><span class="dl">Partners</span><div class="dline"></div><span class="dc">04</span></div>
+  <div class="pgrid">
+    <div class="pcard"><span class="pc-role">Director</span><span class="pc-name">Hossam EL-Gohary</span></div>
+    <div class="pcard"><span class="pc-role">Studio</span><span class="pc-name">Pioneers Now</span></div>
+    <div class="pcard"><span class="pc-role">Studio</span><span class="pc-name">SKOON</span></div>
+    <div class="pcard"><span class="pc-role">Studio</span><span class="pc-name">IEA</span></div>
+  </div>
+</section>
+<div class="divider"><span class="dl">Projects</span><div class="dline"></div><span class="dc">05</span></div>
+<section class="projects" id="work">
+  <div class="card">
+    <div class="vw" onclick="tv(this)">
+      <video src="assets/jeep.mp4" loop preload="auto" playsinline></video>
+      <div class="pb"><div class="pi"><svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="#c9a84c" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="round"/></svg></div></div>
+    </div>
+    <div><div class="badge"><div class="bdot"></div><span class="bname">Jeep® — Stellantis</span></div><div class="pidx">Project — 01</div>
+    <h2 class="ptitle"><span>First Move.</span><span>First Mile.</span></h2>
+    <p class="pdesc">Jeep's first-ever foray into AI-generated video — before the market caught on, before competitors made their move. This production established AI video as a legitimate creative tool for automotive marketing at the highest level.</p>
+    <div class="tags"><span class="tag">AI Video Generation</span><span class="tag">Automotive</span><span class="tag">Brand Film</span><span class="tag">First in Market</span></div>
+    <div class="ach"><div class="ai">⚡</div><div class="at"><strong>Industry-first positioning.</strong> Fully AI-generated brand film for one of America's most iconic automotive names — ahead of every competitor in the segment.</div></div></div>
+  </div>
+  <div class="card">
+    <div class="vw" onclick="tv(this)">
+      <video src="assets/dfsk.mp4" loop preload="auto" playsinline></video>
+      <div class="pb"><div class="pi"><svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="#c9a84c" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="round"/></svg></div></div>
+    </div>
+    <div><div class="badge"><div class="bdot"></div><span class="bname">DFSK — Dongfeng Sokon</span></div><div class="pidx">Project — 02</div>
+    <h2 class="ptitle"><span>Chinese</span><span>Innovation</span><span>Reimagined.</span></h2>
+    <p class="pdesc">A key segment of DFSK's commercial was produced entirely through AI video generation — blending traditional production values with cutting-edge generative technology. Cinematic quality at a fraction of conventional timelines.</p>
+    <div class="tags"><span class="tag">AI Production</span><span class="tag">Commercial</span><span class="tag">Chinese Automotive</span></div>
+    <div class="ach"><div class="ai">🎬</div><div class="at"><strong>Seamless AI integration.</strong> Broadcast-ready commercial segment for a leading Chinese automotive brand.</div></div></div>
+  </div>
+  <div class="card">
+    <div class="vw" onclick="tv(this)">
+      <video src="assets/alula.mp4" loop preload="auto" playsinline></video>
+      <div class="pb"><div class="pi"><svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="#c9a84c" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="round"/></svg></div></div>
+    </div>
+    <div><div class="badge"><div class="bdot"></div><span class="bname">AlUla — Royal Commission KSA</span></div><div class="pidx">Project — 03</div>
+    <h2 class="ptitle"><span>A City</span><span>Without</span><span>Limits.</span></h2>
+    <p class="pdesc">AlUla envisioned a future where its ancient landscapes could be experienced anywhere through immersive VR. This AI-generated cinematic piece served as the visual foundation for that vision.</p>
+    <div class="tags"><span class="tag">VR Concept</span><span class="tag">Destination Film</span><span class="tag">Saudi Arabia</span></div>
+    <div class="ach"><div class="ai">🌍</div><div class="at"><strong>Where antiquity meets innovation.</strong> AI-generated cinematic concept positioning AlUla as a pioneer in digital tourism.</div></div></div>
+  </div>
+  <div class="card">
+    <div class="vw" onclick="tv(this)">
+      <video src="assets/showreel.mp4" loop preload="auto" playsinline></video>
+      <div class="pb"><div class="pi"><svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="#c9a84c" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="round"/></svg></div></div>
+    </div>
+    <div><div class="badge"><div class="bdot"></div><span class="bname">Multi-Brand — AI Showreel</span></div><div class="pidx">Project — 04</div>
+    <h2 class="ptitle"><span>One Reel.</span><span>Every Brand.</span></h2>
+    <p class="pdesc">A curated showreel spanning multiple brands and industries — produced entirely through AI video generation. Every frame conceived, directed, and generated using AI tools.</p>
+    <div class="tags"><span class="tag">Full AI Production</span><span class="tag">Multi-Brand</span><span class="tag">Showreel</span><span class="tag">100% Generated</span></div>
+    <div class="ach"><div class="ai">🏆</div><div class="at"><strong>Entirely AI-generated, start to finish.</strong> No filming. No crew. No studio. Every second produced through generative AI.</div></div></div>
+  </div>
+  <div class="card">
+    <div class="vw" onclick="tv(this)">
+      <video src="assets/hamdaniya.mp4" loop preload="auto" playsinline></video>
+      <div class="pb"><div class="pi"><svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M1 1L15 9L1 17V1Z" fill="#c9a84c" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="round"/></svg></div></div>
+    </div>
+    <div><div class="badge"><div class="bdot"></div><span class="bname">السيرة الحمدانية — Drama Series</span></div><div class="pidx">Project — 05</div>
+    <h2 class="ptitle"><span>Baghdad,</span><span>10th Century.</span></h2>
+    <p class="pdesc">A cinematic trailer for Al-Sira Al-Hamdaniya — an epic drama series set in Baghdad at the height of the Islamic Golden Age. Score, sound design, and edit crafted entirely using AI tools.</p>
+    <div class="tags"><span class="tag">AI Music</span><span class="tag">AI Editing</span><span class="tag">Drama Series</span><span class="tag">Historical Epic</span></div>
+    <div class="ach"><div class="ai">🎭</div><div class="at"><strong>Fully AI-produced from score to screen.</strong> Music, sound design, and edit entirely through AI — cinematic storytelling no longer reserved for big studios.</div></div></div>
+  </div>
+</section>
+<footer>
+  <div class="fl">AHMED<span>.</span>MORSI</div>
+  <div class="fc"><span class="fn">Ahmed Ali Morsi</span><a class="fe" href="mailto:ahmedmorse550@gmail.com">ahmedmorse550@gmail.com</a></div>
+</footer>
+<script>
+function tv(w){var v=w.querySelector('video'),b=w.querySelector('.pb');if(v.paused){v.play();b.classList.add('h');}else{v.pause();b.classList.remove('h');}}
+var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('vis');});},{threshold:0.1});
+document.querySelectorAll('.card').forEach(function(c){io.observe(c);});
+
+function updateProgress(){
+  var h=document.documentElement,b=document.body;
+  var st=h.scrollTop||b.scrollTop;
+  var sh=(h.scrollHeight-h.clientHeight)||1;
+  var pct=Math.min(100,Math.max(0,Math.round((st/sh)*100)));
+  var fill=document.getElementById('npFill');if(fill)fill.style.width=pct+'%';
+  var code=document.getElementById('npCode');if(code)code.textContent=String(pct).padStart(3,'0');
+}
+window.addEventListener('scroll',updateProgress,{passive:true});
+updateProgress();
+
+var navLinks=document.querySelectorAll('.np-link');
+var navSecs=document.querySelectorAll('#about,#partners,#work');
+var so=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      navLinks.forEach(function(l){l.classList.remove('active');});
+      var l=document.querySelector('.np-link[data-sec="'+e.target.id+'"]');
+      if(l)l.classList.add('active');
+    }
+  });
+},{threshold:0.3,rootMargin:'-40% 0px -40% 0px'});
+navSecs.forEach(function(s){so.observe(s);});
+</script>
+</body></html>
